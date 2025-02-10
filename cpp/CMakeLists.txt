@@ -46,6 +46,9 @@ if (WITH_AZURE_FS)
   list(APPEND LINK_LIBS Azure::azure-storage-blobs)
 endif()
 
+add_compile_options(-fsanitize=address -static-libasan)
+add_link_options(-fsanitize=address -static-libasan)
+
 target_link_libraries(milvus-storage PUBLIC ${LINK_LIBS})
 target_include_directories(milvus-storage PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
